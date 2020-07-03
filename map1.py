@@ -26,6 +26,9 @@ fg = folium.FeatureGroup(name="My Map")
 
 for lt, ln, el in zip(lat, lon, elev):
     fg.add_child(folium.Marker(location=[lt, ln], popup= str(el)+"m", icon=folium.Icon(color=color_producer(el))))
-map.add_child(fg)
 
+#loading json data
+fg.add_child(folium.GeoJson(data=(open('world.json', 'r', encoding='utf-8-sig').read())))
+
+map.add_child(fg)
 map.save("Map1.html")
